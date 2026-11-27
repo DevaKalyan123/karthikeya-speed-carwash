@@ -6,3 +6,4 @@ from .service_request import ServiceRequest
 from .request_item import RequestItem
 from .invoice import Invoice
 from .payment import Payment
+from .appointment_slot import AppointmentSlot

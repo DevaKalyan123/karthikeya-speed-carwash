@@ -7,6 +7,19 @@ class Service(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     service_name = db.Column(db.String(150), unique=True, nullable=False)
     description = db.Column(db.Text)
+
+    price = db.Column(db.Numeric(12, 2), nullable=True)
+
     is_active = db.Column(db.Boolean, default=True, nullable=False)
 
-    created_at = db.Column(db.DateTime(timezone=True), server_default=db.func.now())
+    created_at = db.Column(
+        db.DateTime(timezone=True),
+        server_default=db.func.now()
+    )
+
+    __table_args__ = (
+        db.CheckConstraint(
+            "price >= 0",
+            name="check_service_price"
+        ),
+    )
